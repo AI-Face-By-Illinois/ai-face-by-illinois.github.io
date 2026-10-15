@@ -25,7 +25,7 @@ These stimuli are AI-generated images, not photographs of actual children. Demog
 
 ## Download the images
 
-Visit the [Releases page](https://github.com/TimWTChao/AI-Faces-by-Illinois/releases) for image archives as they become available. The original collection is also available on [OSF](https://osf.io/vurm5/).
+Visit the [Releases page](https://github.com/AI-Face-By-Illinois/ai-face-by-illinois.github.io/releases) for image archives as they become available. The original collection is also available on [OSF](https://osf.io/vurm5/).
 
 To download a GitHub release:
 
