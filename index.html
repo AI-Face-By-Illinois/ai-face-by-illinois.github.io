@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#13294b">
+  <meta name="description" content="AI Face Databases by Illinois provides 1,152 photorealistic, AI-generated face images depicting children, with norming data for psychological research.">
+  <title>AI Face Databases by Illinois — Research Explorer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="canonical" href="https://ai-face-by-illinois.github.io/">
+  <script src="site-config.js" defer></script>
+  <script src="downloads.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#explore" aria-label="AI Face Databases by Illinois home"><img class="brand-lab-logo" src="assets/brand/deml-logo.png" alt="Developing Equitable Minds Lab logo" width="461" height="542"><span class="brand-copy"><strong class="brand-title">AI Face Databases</strong><small class="brand-subtitle">by Illinois</small></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#explore" data-view="explore" class="nav-link active" aria-current="page">Explore</a>
+      <a href="#research" data-view="research" class="nav-link">Research</a>
+      <a href="#sql" data-view="sql" class="nav-link">SQL lab</a>
+      <a href="#about" data-view="about" class="nav-link">About the data</a>
+    </nav>
+    <a class="university-link" href="https://illinois.edu/" target="_blank" rel="noopener noreferrer" aria-label="University of Illinois Urbana-Champaign (opens in a new tab)"><span class="university-wordmark"><img src="assets/brand/illinois-wordmark.png" alt="University of Illinois Urbana-Champaign" width="3840" height="2160"></span></a>
+  </header>
+
+  <main id="main-content">
+    <div class="app-message" id="app-message" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span>Loading images and norming data…</div>
+
+    <section id="view-explore" class="view" aria-labelledby="explore-title">
+      <div class="collection-intro">
+        <div><p class="eyebrow">Face stimuli for psychological research</p><h1 id="explore-title">AI-generated child faces</h1><p class="intro-description">A database of 1,152 photorealistic face images depicting children. Browse images and norming data to select stimuli for your research.</p></div>
+        <span class="outline-tag">Ages 3–15 <span aria-hidden="true">↗</span></span>
+      </div>
+      <div class="stats-strip" aria-label="Collection statistics">
+        <div><strong id="stat-images">1,152</strong><span>face images</span></div>
+        <div><strong>4</strong><span>age groups</span></div>
+        <div><strong id="stat-metrics">17</strong><span>norming measures</span></div>
+        <div><strong id="stat-ratings">452,648</strong><span>individual scores</span></div>
+        <div class="download-stat"><strong id="download-total">—</strong><div class="download-stat-label"><span>downloads</span><details class="download-count-help"><summary aria-label="How downloads are counted">i</summary><p id="download-count-note">Each single image or ZIP download counts once. This is not a count of unique users or confirmed saved files.</p></details></div></div>
+      </div>
+      <p class="funding-note">Funded by the <a href="https://research.illinois.edu/researchunit/social-behavioral-science-institute" target="_blank" rel="noopener noreferrer">Social &amp; Behavioral Science Institute</a> at the University of Illinois Urbana-Champaign.</p>
+
+      <div class="explorer-layout">
+        <aside class="filter-sidebar" aria-label="Filter the collection">
+          <div class="sidebar-title"><h2>Filter images</h2><button type="button" class="text-button" id="reset-filters">Reset all</button></div>
+          <p class="sidebar-note">Categories reflect the image generation prompts.</p>
+          <button type="button" class="mobile-filter-toggle" id="mobile-filter-toggle" aria-expanded="false" aria-controls="filter-fields">Filters <span id="filter-badge"></span><span aria-hidden="true">+</span></button>
+          <form id="filter-form">
+            <div id="filter-fields" class="filter-fields">
+              <fieldset><legend>Age <span>years</span></legend><div class="choice-grid age-choices" id="age-choices"></div></fieldset>
+              <fieldset><legend>Gender</legend><div class="choice-grid" id="gender-choices"></div></fieldset>
+              <fieldset><legend>Expression</legend><div class="choice-stack" id="expression-choices"></div></fieldset>
+              <fieldset><legend>Race/ethnicity</legend><div class="checkbox-list" id="ethnicity-choices"></div></fieldset>
+              <fieldset class="score-filter"><legend>Rating criteria</legend><label class="field-label" for="filter-metric">Measure</label><select id="filter-metric" name="metric" disabled></select><div class="range-fields"><div><label for="filter-min">Min. mean</label><input id="filter-min" name="min" type="number" step="any" placeholder="Any"></div><span aria-hidden="true">–</span><div><label for="filter-max">Max. mean</label><input id="filter-max" name="max" type="number" step="any" placeholder="Any"></div></div><label class="field-label" for="filter-n">Minimum ratings per face</label><input id="filter-n" name="minN" type="number" min="1" step="1" placeholder="Any count"><p class="field-hint" id="scale-hint">Reported means are based on individual ratings.</p></fieldset>
+              <p class="filter-validation" id="filter-validation" role="status"></p>
+            </div>
+          </form>
+          <div class="sidebar-bottom"><span class="mini-icon" aria-hidden="true">i</span><p>All images are AI generated.<br>Norming data reflect adults’ perceptions.</p></div>
+        </aside>
+
+        <div class="collection-results">
+          <div class="gallery-tools"><label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><span class="sr-only">Search by image ID</span><input id="search-input" type="search" placeholder="Find a face by ID, e.g. AB3S001" autocomplete="off" spellcheck="false"></label><button type="button" class="button button-light export-button" id="export-button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"></path></svg><span>Export CSV</span></button><button type="button" class="button button-light pictures-button" id="download-pictures" disabled aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-3 4 5"/></svg><span>Download pictures</span></button></div>
+          <div class="results-meta"><div><h2 id="result-count" aria-live="polite">Loading images</h2><p id="result-context">Select an image to view its norming data.</p></div><label class="sort-field"><span>Sort by</span><select id="sort-select" aria-label="Sort faces by"><option value="none">None (random)</option><option value="id">Image ID</option><option value="score-desc">Mean: high to low</option><option value="score-asc">Mean: low to high</option><option value="age">Age: youngest first</option></select></label></div>
+          <div id="active-filters" class="active-filters" aria-label="Active filters"></div>
+          <div id="gallery" class="face-grid" aria-busy="true"></div>
+          <div class="empty-state" id="empty-state" hidden><span class="empty-icon" aria-hidden="true">⌕</span><h3>No faces match these filters.</h3><p>Try a wider score range or remove a category.</p><button type="button" class="button button-primary" id="empty-reset">Reset filters</button></div>
+          <div class="pagination" id="pagination" hidden><span id="page-range"></span><div class="page-controls"><button type="button" id="previous-page" class="icon-button" aria-label="Previous page">←</button><span id="page-number"></span><button type="button" id="next-page" class="icon-button" aria-label="Next page">→</button></div></div>
+          <p class="gallery-footnote">Preview images are shown. Norming data include the mean, standard deviation (SD), and number of ratings (n) for each image and measure.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-research" class="view secondary-view" aria-labelledby="research-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Publication and research team</p><h1 id="research-title">Research</h1><p>Developed by the Developing Equitable Minds Lab at the University of Illinois Urbana-Champaign.</p></div></div>
+      <div class="research-grid">
+        <article class="publication-card" aria-labelledby="publication-title">
+          <div class="publication-topline"><p class="eyebrow">Associated publication</p><span class="publication-status">In press</span></div>
+          <h2 id="publication-title" class="publication-title">AI-Faces by Illinois: A database of AI-generated faces depicting children</h2>
+          <p class="publication-journal"><cite>Behavior Research Methods</cite></p>
+          <p class="publication-authors">T. W.-T. Chao · J. Mei · I. T. Shang · E. Macias · Z. Mkrtychian · D. Zhang · S. A. Oh · J. Serrano Rodriguez · B. C. Straka · M. T. Rizzo</p>
+          <p class="publication-summary">The article describes the creation of the image database and the norming study. Adult participants rated the images’ perceived realness, niceness, wealthiness, age, emotional expression, gender, and race/ethnicity.</p>
+          <div class="publication-actions"><a class="button button-primary" href="https://doi.org/10.3758/s13428-026-03182-y" target="_blank" rel="noopener noreferrer">Article DOI <span aria-hidden="true">↗</span></a><button class="button button-light" type="button" id="copy-citation">Copy reference <span aria-hidden="true">⧉</span></button></div>
+          <p class="publication-note">DOI assigned; the publisher page will become available when the article is published.</p>
+          <details class="reference-details"><summary>Full reference</summary><p id="publication-reference">Chao, T. W.-T., Mei, J., Shang, I. T., Macias, E., Mkrtychian, Z., Zhang, D., Oh, S. A., Serrano Rodriguez, J., Straka, B. C., &amp; Rizzo, M. T. (in press). AI-Faces by Illinois: A database of AI-generated faces depicting children. <cite>Behavior Research Methods</cite>. https://doi.org/10.3758/s13428-026-03182-y</p></details>
+        </article>
+        <aside class="lab-card" aria-labelledby="lab-title">
+          <img class="lab-logo" src="assets/brand/deml-logo.png" alt="Developing Equitable Minds Lab logo: a branching tree within a child's profile" width="461" height="542">
+          <p class="eyebrow">Research lab</p>
+          <h2 id="lab-title" class="lab-title">Developing Equitable Minds Lab</h2>
+          <p class="lab-affiliation">University of Illinois Urbana-Champaign</p>
+          <p class="lab-description">We study how children understand fairness, learn about other people, and build friendships across differences.</p>
+          <a class="lab-link" href="https://publish.illinois.edu/developing-minds/" target="_blank" rel="noopener noreferrer">Lab website <span aria-hidden="true">↗</span></a>
+        </aside>
+      </div>
+      <p class="research-funding">This database was funded by the <a href="https://research.illinois.edu/researchunit/social-behavioral-science-institute" target="_blank" rel="noopener noreferrer">Social &amp; Behavioral Science Institute</a> at the University of Illinois Urbana-Champaign.</p>
+      <nav class="research-resources" aria-label="Related research resources"><p class="eyebrow">Collection resources</p><div class="resource-links"><a href="https://osf.io/vurm5/" target="_blank" rel="noopener noreferrer">Original collection on OSF <span aria-hidden="true">↗</span></a><a href="https://doi.org/10.17605/OSF.IO/VURM5" target="_blank" rel="noopener noreferrer">Dataset DOI <span aria-hidden="true">↗</span></a><a href="https://github.com/AI-Face-By-Illinois/ai-face-by-illinois.github.io/releases" target="_blank" rel="noopener noreferrer">Images &amp; supporting materials <span aria-hidden="true">↗</span></a></div></nav>
+    </section>
+
+    <section id="view-sql" class="view secondary-view" aria-labelledby="sql-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Query images and norming data</p><h1 id="sql-title">SQL queries</h1><p>Use SQL to select images, compare norming results, or summarize individual ratings.</p></div><span class="outline-tag">SQLite <span class="tiny-dot"></span></span></div>
+      <div class="sql-layout"><div class="sql-workspace"><div class="panel-heading"><h2>Query editor</h2><span class="muted small">SELECT / WITH · up to 100 rows</span></div><div class="query-examples" id="query-examples" aria-label="Example SQL queries"></div><label class="sr-only" for="sql-editor">SQL query</label><textarea id="sql-editor" class="sql-editor" spellcheck="false" aria-describedby="sql-hint"></textarea><div class="sql-actions"><p id="sql-hint">Ctrl / ⌘ + Enter to run. Changes to the dataset are disabled.</p><button type="button" id="run-query" class="button button-primary" disabled><span aria-hidden="true">▷</span>Run query</button></div><div id="sql-status" class="sql-status" role="status" aria-live="polite">Choose an example or write your own query.</div><div class="sql-output" id="sql-output"><div class="query-placeholder"><span aria-hidden="true">{ }</span><p>Your results will appear here.</p></div></div></div><aside class="schema-panel"><p class="eyebrow">Database reference</p><h2>Tables and fields</h2><p class="schema-intro">Join on <code>image_key</code>, <code>metric_id</code> and <code>response_id</code>.</p><div id="schema-reference"></div><div class="schema-note"><strong>Summary tables</strong><p><code>metric_summaries</code> contains the reported norming results. <code>rating_statistics</code> calculates statistics from the individual ratings.</p></div></aside></div>
+    </section>
+
+    <section id="view-about" class="view secondary-view" aria-labelledby="about-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Stimuli and norming study</p><h1 id="about-title">About the database</h1><p>AI-generated face images and adult norming data for use in psychological research.</p></div></div>
+      <div class="about-overview"><div><span class="section-number">01 / Stimuli</span><h2>Image database</h2><p>The database contains 1,152 photorealistic, AI-generated images depicting children aged 3, 6, 10, and 15 years. The images vary in intended race/ethnicity, gender, age, and emotional expression.</p><p>Each age × gender × race/ethnicity category contains 18 images: 10 smiling, 4 angry, and 4 frowning. Each image depicts a different generated face; the database does not include multiple expressions of the same identity.</p></div><div class="scope-card"><dl><div><dt>Intended ages</dt><dd>3, 6, 10 &amp; 15 years</dd></div><div><dt>Intended categories</dt><dd>8 racial/ethnic groups · 2 gender groups</dd></div><div><dt>Expressions</dt><dd>640 smiling · 256 frowning · 256 angry</dd></div><div><dt>Norming measures</dt><dd>17 reported outcomes</dd></div><div><dt>Rating coverage</dt><dd>15–55 scores per image and measure</dd></div><div><dt>Available data</dt><dd>Summary statistics and individual ratings</dd></div></dl></div></div>
+      <div class="method-grid"><article><span class="section-number">02 / Categories</span><h3>Intended and perceived attributes</h3><p>The image filters describe categories specified in the generation prompts. In the norming study, adult participants evaluated the images’ perceived realness, niceness, wealthiness, age, emotional expression, gender, and race/ethnicity. These ratings can be used to select and match stimuli for a study.</p></article><article><span class="section-number">03 / Responses</span><h3>Norming data</h3><p>The website includes 1,297 anonymous response records containing 452,648 individual ratings. The response-record count does not establish the number of unique participants. Ratings from complete and partial responses are available, with completion status reported for each response.</p></article><article><span class="section-number">04 / Statistics</span><h3>Summary statistics</h3><p>Each image has a reported mean, sample standard deviation (SD), and number of ratings (n) for each measure. Individual ratings are also available for inspection and analysis. Perceived age is reported in years; the remaining measures use a 1–7 scale. Recorded age ratings of zero are retained.</p></article></div>
+      <div class="about-lower"><section><h2>Image identifiers</h2><div class="id-example" aria-label="AB3S001: East Asian, boy, age 3, smiling, sequence 001"><span><b>A</b><small>Race/ethnicity</small></span><span><b>B</b><small>Gender</small></span><span><b>3</b><small>Age</small></span><span><b>S</b><small>Expression</small></span><span><b>001</b><small>Sequence</small></span></div><p class="muted">Example: East Asian · Boy · 3 years · Smiling · 001. The full identifier uniquely identifies an image; the sequence number alone does not.</p><details class="code-reference"><summary>View category codes</summary><div id="category-reference"></div></details></section><section class="interpretation-card"><h2>Using the norming data</h2><ul><li>The database contains more smiling than angry or frowning images. Account for the number of images in each category when comparing groups.</li><li>Norming ratings describe perceptions of AI-generated images. They do not measure attributes of real children or establish differences between demographic groups.</li><li>Response numbers are anonymous. Direct respondent identifiers and source-system metadata are excluded from the website data.</li></ul></section></div>
+      <div class="method-footer"><span class="tiny-dot"></span><p>The SQL lab queries a local, read-only copy in your browser. Search and query text are not submitted to a database server.</p></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-brand"><strong>AI Face Databases by Illinois</strong><a href="https://publish.illinois.edu/developing-minds/" target="_blank" rel="noopener noreferrer">Developing Equitable Minds Lab</a></div><p>University of Illinois Urbana-Champaign</p><a href="#research">Research &amp; publication <span aria-hidden="true">↗</span></a></footer>
+
+  <dialog id="face-dialog" class="face-dialog" aria-labelledby="detail-title"><div class="dialog-header"><div><p class="eyebrow">Face record</p><h2 id="detail-title"></h2></div><button type="button" id="close-detail" class="icon-button close-button" aria-label="Close image details">×</button></div><div id="detail-content" class="detail-content"></div></dialog>
+  <dialog id="download-dialog" class="download-dialog" aria-labelledby="download-title" aria-describedby="download-intro">
+    <div class="dialog-header"><div><p class="eyebrow">Image selection</p><h2 id="download-title">Download pictures</h2></div><button type="button" id="close-download" class="icon-button close-button" aria-label="Close download window">×</button></div>
+    <p id="download-intro" class="download-intro">Choose original PNG images to download together in a ZIP file.</p>
+    <form id="download-form" novalidate>
+      <fieldset id="download-options"><legend class="sr-only">Choose which images to download</legend>
+        <div class="download-scopes">
+          <label class="download-scope"><input id="download-scope-current" type="radio" name="download-scope" value="current" checked><span>Use current filters</span></label>
+          <label class="download-scope"><input id="download-scope-custom" type="radio" name="download-scope" value="custom"><span>Choose filters for this download</span></label>
+          <label class="download-scope"><input id="download-scope-all" type="radio" name="download-scope" value="all"><span>All images · 1,152</span></label>
+        </div>
+        <p id="download-current-summary" class="download-current-summary"></p>
+        <div id="download-custom" class="download-custom" hidden>
+          <fieldset><legend>Age · years</legend><div id="download-age-choices" class="choice-stack"></div></fieldset>
+          <fieldset><legend>Gender</legend><div id="download-gender-choices" class="choice-stack"></div></fieldset>
+          <fieldset class="download-wide"><legend>Expression</legend><div id="download-expression-choices" class="choice-stack"></div></fieldset>
+          <fieldset class="download-wide"><legend>Race/ethnicity</legend><div id="download-ethnicity-choices" class="choice-stack"></div></fieldset>
+          <div class="download-wide"><label class="field-label" for="download-search">Image ID (optional)</label><input id="download-search" type="search" placeholder="e.g. AB3S001" autocomplete="off"></div>
+          <div class="download-wide"><label class="field-label" for="download-metric">Rating criteria (optional)</label><select id="download-metric"></select><div class="download-rating-fields"><div><label for="download-min">Min. mean</label><input id="download-min" type="number" step="any" placeholder="Any"></div><div><label for="download-max">Max. mean</label><input id="download-max" type="number" step="any" placeholder="Any"></div><div><label for="download-n">Min. ratings</label><input id="download-n" type="number" min="1" step="1" placeholder="Any"></div></div></div>
+        </div>
+      </fieldset>
+      <div class="download-selection-status"><p id="download-match-count" role="status" aria-live="polite">Checking selection…</p><p class="download-format-note">Original PNG files, with no resizing or conversion. The full collection is about 1.28 GB. <a href="https://github.com/AI-Face-By-Illinois/ai-face-by-illinois.github.io/releases" target="_blank" rel="noopener noreferrer">Original-resolution image collection ↗</a></p><p id="download-validation" class="download-validation" role="alert"></p><div id="download-progress-area" hidden><progress id="download-progress" value="0" max="1152" aria-label="Checking original images"></progress><p id="download-progress-label" role="status" aria-live="polite"></p></div></div>
+      <div class="download-actions"><button type="button" id="download-cancel" class="button button-light">Cancel</button><button type="submit" id="download-submit" class="button button-primary" disabled>Download images</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="noscript">JavaScript is needed to query the local dataset and display this collection.</p></noscript>
+</body>
+</html>

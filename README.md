@@ -6,6 +6,8 @@ Developed at the University of Illinois Urbana-Champaign, AI-Faces by Illinois p
 
 **Associated article:** [AI-Faces by Illinois: A database of AI-generated faces depicting children](https://doi.org/10.3758/s13428-026-03182-y), *Behavior Research Methods*.
 
+Browse faces, explore norming ratings, and download selected original PNGs on the [interactive website](https://ai-face-by-illinois.github.io/). See the [website documentation](docs/website.md) for hosting, download integrity, and the definition of the website's download count.
+
 ## Image collection
 
 The database includes images varying across the following prompted characteristics:
