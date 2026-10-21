@@ -1,12 +1,22 @@
 # AI-Faces by Illinois
 
+## [Open the interactive database →](https://ai-face-by-illinois.github.io/#explore)
+
+**Filter faces · View norming ratings · Download original PNG images**
+
+Click the link above or the preview below to browse the database. No sign-in is required.
+
+[![Open the AI-Faces by Illinois interactive database](docs/images/database-preview.png)](https://ai-face-by-illinois.github.io/#explore)
+
+[Download the full image archive](https://github.com/AI-Face-By-Illinois/ai-face-by-illinois.github.io/releases/tag/v1.0.0) · [Citation](#citation) · [OSF materials](https://osf.io/vurm5/) · [Website documentation](docs/website.md)
+
+---
+
 **A database of 1,152 photorealistic, AI-generated images depicting children for use in psychological research.**
 
 Developed at the University of Illinois Urbana-Champaign, AI-Faces by Illinois provides systematically varied child-face stimuli accompanied by adult norming ratings. This repository provides an additional distribution location for the image collection originally shared on [OSF](https://osf.io/vurm5/).
 
 **Associated article:** [AI-Faces by Illinois: A database of AI-generated faces depicting children](https://doi.org/10.3758/s13428-026-03182-y), *Behavior Research Methods*.
-
-Browse faces, explore norming ratings, and download selected original PNGs on the [interactive website](https://ai-face-by-illinois.github.io/). See the [website documentation](docs/website.md) for hosting, download integrity, and the definition of the website's download count.
 
 ## Image collection
 
