@@ -25,6 +25,12 @@ The interactive website supplements the original collection and documentation.
 
 ## Frontend and backend
 
+Website files are kept in `docs/` so the repository homepage places the
+database entry link close to the top. GitHub Pages publishes the `main` branch's
+`/docs` folder. The website URL stays `https://ai-face-by-illinois.github.io/`;
+`/docs` is a source folder, not part of the public website address. Keep the root
+`README.md` as the entry page for the repository URL cited in the article.
+
 GitHub Pages hosts the HTML, CSS, JavaScript, display images, SQLite dataset, and
 bundled sql.js runtime. The browser loads the research database and runs its
 queries locally in a dedicated worker. The distributed response identifiers are
