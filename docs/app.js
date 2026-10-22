@@ -74,9 +74,29 @@ async function copyCitation(){
   const reference=$('#publication-reference');
   const text=reference.textContent.trim();
   try{
+    if(navigator.clipboard?.write&&window.ClipboardItem){
+      const formatted=document.createElement('p');
+      formatted.innerHTML=reference.innerHTML;
+      formatted.style.cssText='margin:0 0 0 0.5in;text-indent:-0.5in;line-height:2;';
+      formatted.querySelectorAll('cite').forEach(journal=>{
+        const italic=document.createElement('i');
+        italic.textContent=journal.textContent;
+        journal.replaceWith(italic);
+      });
+      try{
+        await navigator.clipboard.write([new ClipboardItem({
+          'text/plain':new Blob([text],{type:'text/plain'}),
+          'text/html':new Blob([formatted.outerHTML],{type:'text/html'})
+        })]);
+        toast('APA reference copied.');
+        return;
+      }catch{
+        // Some browsers allow plain-text copying but reject rich clipboard data.
+      }
+    }
     if(!navigator.clipboard?.writeText)throw new Error('Clipboard unavailable');
     await navigator.clipboard.writeText(text);
-    toast('Reference copied.');
+    toast('APA reference copied as plain text.');
   }catch{
     $('.reference-details').open=true;
     const selection=window.getSelection();
@@ -85,7 +105,7 @@ async function copyCitation(){
     selection.removeAllRanges();
     selection.addRange(range);
     reference.scrollIntoView({block:'nearest'});
-    toast('Reference selected. Press Ctrl / Command + C to copy.');
+    toast('APA reference selected. Press Ctrl / Command + C to copy.');
   }
 }
 function navigate(){
