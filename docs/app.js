@@ -98,7 +98,6 @@ async function copyCitation(){
     await navigator.clipboard.writeText(text);
     toast('APA reference copied as plain text.');
   }catch{
-    $('.reference-details').open=true;
     const selection=window.getSelection();
     const range=document.createRange();
     range.selectNodeContents(reference);

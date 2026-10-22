@@ -48,8 +48,7 @@
 .publication-actions .button-primary:hover{background:#13294b16}
 .publication-note{margin-top:14px;font-size:10px;line-height:1.7;color:var(--muted);max-width:560px}
 .reference-details{border-top:1px solid var(--line);margin-top:26px;padding-top:18px}
-.reference-details summary{color:var(--green);font-size:11px;cursor:pointer;line-height:1.7;width:fit-content;text-underline-offset:4px}
-.reference-details summary:hover{text-decoration:underline}
+.reference-details h3{margin:0;color:var(--green);font-size:11px;font-weight:500;line-height:1.7}
 .reference-details p{font-size:12px;line-height:1.85;color:var(--muted);margin-top:14px;background:#13294b05;border-left:2px solid #ff5f0570;padding:14px 17px;overflow-wrap:anywhere}
 .reference-details p a{text-underline-offset:3px}
 .lab-card{padding:31px 30px;background:var(--navy-wash);display:flex;flex-direction:column;align-items:flex-start}
@@ -231,7 +230,6 @@
 .hist-bar-col .bar{transform-origin:center bottom;animation:bar-enter .34s cubic-bezier(.2,.7,.2,1)}
 .hist-bar-col .bar-value{animation:card-enter .28s ease-out}
 .filter-fields.open{animation:card-enter .2s ease-out}
-.reference-details[open]>p{animation:card-enter .2s ease-out}
 .toast:not([hidden]){animation:card-enter .18s ease-out}
 
 .button,.icon-button,.example-button,.filter-tag{transition:background .16s,border-color .16s,box-shadow .16s,transform .16s,color .16s}
