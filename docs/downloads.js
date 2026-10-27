@@ -82,7 +82,7 @@ async function downloadSingleFace(event,face){
     const bytes=new Uint8Array(await response.arrayBuffer());
     if(bytes.length<24||![137,80,78,71,13,10,26,10].every((value,index)=>bytes[index]===value))throw new Error('The original PNG is unavailable.');
     const blob=new Blob([bytes],{type:'image/png'});
-    saveDownload(blob,face.image_id+'.png');void recordImageDownload(1);
+    saveDownload(blob,face.image_id+'.png');
   }catch(error){toast('Download failed. Please try again.');}
   finally{button.removeAttribute('aria-disabled');}
 }
@@ -102,28 +102,11 @@ async function startPictureDownload(event){
     // Let the browser stream the archive directly to disk. The full collection
     // is over a gigabyte and must never be assembled in browser memory.
     const link=document.createElement('a');link.href=url;link.download=info.filename;document.body.append(link);link.click();link.remove();
-    void recordImageDownload(faces.length);downloadController=null;setDownloadBusy(false);closeDownloads();
+    downloadController=null;setDownloadBusy(false);closeDownloads();
     toast(`Download started: ${formatNumber(faces.length)} original PNG images. See your browser's downloads for progress.`);
   }catch(error){if(downloadController===controller&&!controller.signal.aborted)pictureDownloadError(error.name==='TimeoutError'?'The original-image service took too long. Please try again.':error.message);}
 }
 function pictureDownloadError(message){downloadController?.abort();downloadController=null;setDownloadBusy(false);$('#download-progress-area').hidden=true;$('#download-validation').textContent=message;}
-function showDownloadStats(stats){
-  if(!Number.isSafeInteger(stats.downloads)||stats.downloads<0)throw new Error('Invalid download total');
-  $('#download-total').textContent=formatNumber(stats.downloads);
-  $('#download-count-note').textContent='Image download requests'+(stats.since?' since '+new Date(stats.since).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}):' since this counter was added')+'. Each single image or ZIP download counts once. Not a count of unique users or confirmed saved files.';
-}
-async function loadDownloadStats(){
-  try{const response=await fetch(faceApiUrl('/api/downloads'),{credentials:'same-origin',cache:'no-store',signal:AbortSignal.timeout(8000)});if(!response.ok)throw new Error();showDownloadStats(await response.json());}
-  catch{$('#download-total').textContent='—';$('#download-count-note').textContent='Download statistics are temporarily unavailable.';}
-}
-async function recordImageDownload(imageCount){
-  const requestId=crypto.randomUUID();
-  for(let attempt=0;attempt<2;attempt++){
-    try{const response=await fetch(faceApiUrl('/api/downloads'),{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({requestId,kind:'images',imageCount}),keepalive:true,signal:AbortSignal.timeout(8000)});if(!response.ok)throw new Error();showDownloadStats(await response.json());return;}
-    catch{if(attempt===0)await new Promise(resolve=>setTimeout(resolve,500));}
-  }
-  // A temporary stats failure must never block delivery of the requested file.
-}
 function setupDownloads(){
   $('#download-pictures').addEventListener('click',openDownloads);
   $('#download-form').addEventListener('submit',startPictureDownload);
@@ -141,5 +124,4 @@ function setupDownloads(){
   $('#download-cancel').addEventListener('click',closeDownloads);$('#close-download').addEventListener('click',closeDownloads);
   $('#download-dialog').addEventListener('cancel',event=>{event.preventDefault();closeDownloads();});
   $('#download-dialog').addEventListener('click',event=>{if(event.target!==event.currentTarget)return;const b=event.currentTarget.getBoundingClientRect();if(event.clientX<b.left||event.clientX>b.right||event.clientY<b.top||event.clientY>b.bottom)closeDownloads();});
-  loadDownloadStats();
 }
