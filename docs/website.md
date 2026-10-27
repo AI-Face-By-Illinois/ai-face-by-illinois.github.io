@@ -46,12 +46,12 @@ for these functions:
 | `GET /api/originals?id=IMAGE_ID` | Download one original PNG. |
 | `GET /api/originals?ids=ID1,ID2,...` | Stream a ZIP of the selected original PNGs. |
 | `GET /api/originals?...&check=1` | Check source availability before starting a download. |
-| `GET /api/downloads` | Retired; returns HTTP 410 without statistics. |
-| `POST /api/downloads` | Retired; returns HTTP 410 without recording an event. |
+| `GET /api/downloads` | Read the shared download total. |
+| `POST /api/downloads` | Record an image or ZIP download request after preparation and browser handoff. |
 
-GitHub Pages does not execute these backend endpoints. The backend uses a Worker
-for original-image delivery. Download tracking is disabled; former D1 event data
-is not exposed by the current API. The public API origin is configuration, not a credential;
+GitHub Pages does not execute these backend endpoints or host the counter's
+database. The backend uses a Worker and a separate persistent D1 database for
+download events. The public API origin is configuration, not a credential;
 backend credentials and deployment tokens must never be included in frontend
 files. Cross-origin API access must allow the public website's origin.
 
@@ -77,14 +77,31 @@ normalized `pictures/IMAGE_ID.png` filenames and include a checksum CSV and
 research reference. Existing GitHub release archives and OSF remain separate
 download routes; their original documentation and structure are retained.
 
-## Download statistics
+## What the download count means
 
-The website does not display or record download totals. The former statistics
-API is retired: GET and POST return HTTP 410 without exposing historical totals
-or timestamps, or reading or writing event rows. Original PNG and ZIP downloads
-continue through the independent `/api/originals` endpoint.
+The homepage displays image download requests recorded by the shared backend:
 
-Existing event data remains internal and is not served by this endpoint.
+- One single-image download counts once.
+- One ZIP download counts once, regardless of how many images it contains.
+- CSV exports, page views, source-availability checks, and verification scripts
+  do not add image download events.
+- A count is recorded after successful preparation and browser handoff. It does
+  not confirm that the transfer finished or that a file was saved to disk.
+- Repeated submissions of the same event ID are counted once. Separate download
+  actions, including actions by the same person, can count separately.
+
+The total is not a count of unique people, research uses, or citations. It does
+not include historical downloads or downloads made directly through GitHub
+releases or OSF. Any recorded preview-site downloads remain in the same total;
+public launch does not start a separate counter. The public API returns counts without date metadata, and the page does not
+display a start date. When reporting usage, state the metric and the date of
+observation, for example, “X image download requests recorded through the
+website as of [date].”
+
+The event database stores a random request ID, event kind, number of images, and
+server timestamp. It does not store names, email addresses, IP addresses, image
+IDs, or browser fingerprints. Counter outages must be shown as unavailable,
+rather than as a fabricated zero.
 
 ## Updates and future migration
 
@@ -94,18 +111,19 @@ frontend and backend should be checked together before release: image filters,
 CSV export, a single original PNG, and a filtered ZIP must continue to work.
 Check original file hashes when changing any download implementation.
 
-Keep the existing D1 binding and historical records intact during ordinary
-website deployments; the retired statistics endpoint does not access them.
+Ordinary deployments do not reset download counts while the backend retains
+the same D1 database. Do not recreate that database to deploy a website update.
 Use a local test database for counter tests; automated verification must not
 send test events to the production counter.
 
 The website currently depends on GitHub Pages for its frontend, the existing
-Sites backend for API execution, and OSF for original
+Sites backend for API execution and counter persistence, and OSF for original
 PNG content. If one component moves, keep the public website address and update
 the affected configuration. Before migrating the backend, preserve its API
-contract and any existing internal data, and test cross-origin access from the
-public website. Move the frontend to the new API only after original downloads
-have been verified. Retire the old backend after the new deployment is confirmed.
+contract, export and verify the counter data, retain event IDs and timestamps,
+and test cross-origin access from the public website. Move the frontend to the
+new API only after original downloads and the existing counter total have been
+verified. Retire the old backend after the new deployment is confirmed.
 
 If original image storage changes, verify the complete 1,152-image ID set and
 every original SHA-256 checksum before changing source revisions or offsets.

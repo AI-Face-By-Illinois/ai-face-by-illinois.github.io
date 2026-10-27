@@ -163,10 +163,15 @@
 /* Small, finite movements help changes of view and selection feel connected. */
 .brand-lab-logo{height:52px;width:44px;object-fit:contain;flex-shrink:0}
 .intro-description{max-width:760px}
-.stats-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;padding:18px 0;margin-bottom:0}
+.stats-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;padding:18px 0;margin-bottom:0}
 .stats-strip>div{padding:3px 20px;min-width:0;flex-wrap:wrap;gap:5px 9px}
 .stats-strip>div:last-child{border-right:0}
 .stats-strip span{line-height:1.5}
+.download-stat{position:relative}
+.download-stat-label{display:inline-flex;align-items:center;gap:6px}
+.download-count-help summary{cursor:pointer;list-style:none;width:16px;height:16px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:10px;color:var(--muted)}
+.download-count-help summary::-webkit-details-marker{display:none}
+.download-count-help p{position:absolute;right:0;top:100%;width:280px;z-index:5;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);font-size:11px;color:var(--muted)}
 .funding-note{font-size:11px;color:var(--muted);line-height:1.8;margin:13px 0 28px}
 .funding-note a,.research-funding a{color:var(--green);text-underline-offset:3px;text-decoration-color:#13294b40}
 .research-funding{margin-top:24px;padding:22px 25px;border:1px solid var(--line);border-radius:7px;background:var(--navy-wash);font-size:12px;color:var(--muted);line-height:1.8}
@@ -211,7 +216,7 @@
 @keyframes download-exit{from{opacity:1}to{opacity:0;transform:translateY(6px)}}
 @media(min-width:581px) and (max-width:760px){.stats-strip>div{padding-left:10px;padding-right:10px}.stats-strip>div:first-child{padding-left:0}}
 @media(max-width:760px){.gallery-tools{flex-wrap:wrap}.gallery-tools .search-field{flex-basis:100%}.gallery-tools .export-button,.gallery-tools .pictures-button{flex:1;width:auto}.gallery-tools .export-button>span{display:inline}.brand-lab-logo{height:46px;width:39px}.funding-note{font-size:10px;margin-bottom:23px}.download-dialog .dialog-header{padding:18px 20px}.download-intro{padding:16px 20px 0}#download-options{padding:18px 20px}.download-selection-status{padding:0 20px 18px}.download-actions{padding:14px 20px}}
-@media(max-width:580px){.stats-strip{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:15px}.stats-strip>div{padding:0 14px!important;gap:5px 8px}.stats-strip>div:nth-child(odd){padding-left:0!important;border-right:1px solid var(--line)}.stats-strip>div:nth-child(even),.stats-strip>div:last-child{border:0}.stats-strip strong{font-size:25px}.stats-strip span{font-size:10px}.download-custom{gap:18px 12px}.download-custom .download-wide{grid-column:1/-1}.research-funding{padding:19px;font-size:11px}}
+@media(max-width:580px){.stats-strip{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:15px}.stats-strip>div{padding:0 14px!important;gap:5px 8px}.stats-strip>div:nth-child(odd){padding-left:0!important;border-right:1px solid var(--line)}.stats-strip>div:nth-child(even),.stats-strip>div:last-child{border:0}.stats-strip strong{font-size:25px}.stats-strip span{font-size:10px}.download-count-help p{left:0;right:auto;width:270px}.download-custom{gap:18px 12px}.download-custom .download-wide{grid-column:1/-1}.research-funding{padding:19px;font-size:11px}}
 @media(max-width:380px){.brand-lab-logo{height:40px;width:34px}.brand-title{font-size:12px}.university-wordmark{width:90px}.download-custom{grid-template-columns:1fr}.download-rating-fields{gap:7px}.download-dialog{width:calc(100vw - 20px)}.download-dialog .dialog-header{padding:15px 17px}.download-intro{padding:15px 17px 0}#download-options{padding:17px}.download-selection-status{padding:0 17px 17px}.download-actions{padding:13px 17px}.download-dialog .dialog-header h2{font-size:25px}}
 .view:not([hidden]){animation:view-enter .3s ease-out}
 .face-card{animation:card-enter .26s ease-out backwards}
